@@ -1,0 +1,221 @@
+//Property class
+
+package melkages;
+
+public class proper_ty {
+
+private String ci;
+
+private String user;
+
+private String pname;
+
+private double ramount;
+
+public proper_ty () {
+
+ci = "";
+
+user = "";
+
+pname = "";
+
+ramount = 0.0;
+
+}
+
+public proper_ty (proper_ty p1)
+
+{
+
+pname = p1.pname;
+
+ci = p1.ci;
+
+ramount = p1.ramount;
+
+user = p1.user;
+
+}
+
+public proper_ty(String pname, String ci, double ramount,String user) {
+
+this.pname = pname;
+
+this.ci = ci;
+
+this.ramount = ramount;
+
+this.user = user;
+
+}  
+
+public void setLocation(String ci) {
+
+this.ci = ci;
+
+}
+
+public String getpname() {
+
+return pname;
+
+}
+
+public String getci() {
+
+return ci;
+
+}
+
+public double getramount() {
+
+return ramount;
+
+}
+
+public void setramount(double ramount) {
+
+this.ramount = ramount;
+
+}
+
+public String getuser() {
+
+return user;
+
+}
+
+public void setuser(String user) {
+
+this.user = user;
+
+}
+
+public String toString() {
+
+return "proper_ty Name: "+this.pname+"\n"+
+
+"Located: "+this.ci+"\n"+
+
+"Belonging to: "+this.user+"\n"+
+
+"Rent Amount: "+this.ramount;
+
+}
+
+}
+
+Management Class
+
+package melkages;
+
+public class Management_Company {
+
+private int mproperty = 5;
+
+private double mfee;
+
+private String cname;
+
+private proper_ty[] pro=new proper_ty[mproperty];
+
+private String taxval;
+
+int ind=0;
+
+public Management_Company(String cname, String taxval, int mfee) {
+
+this.cname=cname;
+
+this.taxval=taxval;
+
+this.mfee=mfee;
+
+}
+
+public int add_Property(proper_ty p11) {
+
+if(ind>=mproperty){
+
+return -1;
+
+}else{
+
+pro[ind]=p11;
+
+ind++;
+
+return ind-1;
+
+}  
+
+}
+
+public String display_property(int ind) {
+
+String out=pro[ind].toString();
+
+return out;
+
+}
+
+public int getmproperty() {
+
+return mproperty;
+
+}
+
+public int maxPropertyRentind() {
+
+double mrent=0;
+
+int mrentind=0;
+
+for(int i=0;i<pro.length;i++){
+
+if(mrent<pro[i].getramount()){
+
+mrent=pro[i].getramount();
+
+mrentind=i;
+
+}
+
+}
+
+return mrentind;
+
+}
+
+public double tot_rent() {
+
+double tot_rent = 0;
+
+for(int i=0;i<pro.length;i++){
+
+tot_rent+=pro[i].getramount();
+
+}
+
+return tot_rent;
+
+}
+
+public String toString() {  
+
+String out="";
+
+for(int i=0;i<pro.length;i++){
+
+out+=pro[i].toString()+"\n\n";
+
+}
+
+return ("List of managment company, "
+
++ "Alliance, taxval, 1235\n---------\n"+out+"----------\ntotal management Fee:"+this.mfee);
+
+}
+
+}
